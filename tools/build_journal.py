@@ -289,6 +289,29 @@ def build_post(p):
     (ROOT / "blog" / f"{p['slug']}.html").write_text(page, encoding="utf-8")
 
 
+def build_home_teaser():
+    """Keep the homepage's 'From the journal' strip in sync with the newest posts."""
+    index = ROOT / "index.html"
+    s = index.read_text(encoding="utf-8")
+    start, end = "<!-- journal-teaser:start -->", "<!-- journal-teaser:end -->"
+    a, b = s.index(start) + len(start), s.index(end)
+    block = f"""
+    <section class="journal-teaser" id="journal">
+      <div class="section-head split">
+        <div>
+          <p class="eyebrow reveal">From the journal</p>
+          <h2 data-split>Notes on building <em>calm.</em></h2>
+        </div>
+        <a href="/blog/" class="link-arrow reveal">All articles <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="post-grid">
+{chr(10).join(card(p) for p in POSTS[:3])}
+      </div>
+    </section>
+    """
+    index.write_text(s[:a] + block + s[b:], encoding="utf-8")
+
+
 def build_feeds():
     urls = [(f"{SITE}/", POSTS[0]["date"]), (f"{SITE}/blog/", POSTS[0]["date"])]
     urls += [(f"{SITE}/blog/{p['slug']}", p["date"]) for p in POSTS]
@@ -326,4 +349,5 @@ if __name__ == "__main__":
     for post in POSTS:
         build_post(post)
     build_feeds()
+    build_home_teaser()
     print(f"Built journal: {len(POSTS)} posts")

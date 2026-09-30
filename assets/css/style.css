@@ -666,3 +666,7 @@ html.lenis, html.lenis body { height: auto; }
   .post-grid, .article-more .post-grid { grid-template-columns: 1fr; }
   .journal-head, .article-head { padding-top: 130px; }
 }
+
+/* Homepage journal teaser */
+.journal-teaser { padding-top: var(--section); }
+.journal-teaser .post-grid { margin: 0 var(--gutter); padding: 0; border-top: 0; }
