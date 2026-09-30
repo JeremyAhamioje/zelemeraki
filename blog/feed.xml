@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Zelemeraki Design — Journal</title>
+    <link>https://zelemeraki.design/blog/</link>
+    <description>Notes on building calm, from a Lagos design &amp; build studio.</description>
+    <language>en-ng</language>
+    <item>
+      <title>Planning a build in Lagos: what to sort out before the first block is laid</title>
+      <link>https://zelemeraki.design/blog/planning-a-build-in-lagos</link>
+      <guid>https://zelemeraki.design/blog/planning-a-build-in-lagos</guid>
+      <pubDate>Sat, 12 Sep 2026 09:00:00 +0100</pubDate>
+      <description>Title, soil, approvals and a budget for what you can&#x27;t see — the groundwork that decides how a project ends.</description>
+    </item>
+    <item>
+      <title>Minimalism that still feels like home</title>
+      <link>https://zelemeraki.design/blog/minimalism-that-feels-like-home</link>
+      <guid>https://zelemeraki.design/blog/minimalism-that-feels-like-home</guid>
+      <pubDate>Fri, 28 Aug 2026 09:00:00 +0100</pubDate>
+      <description>Calm doesn&#x27;t have to mean cold. Light, warm materials and hidden storage make a quiet room you actually want to live in.</description>
+    </item>
+    <item>
+      <title>Renovate or rebuild? Five questions we ask first</title>
+      <link>https://zelemeraki.design/blog/renovate-or-rebuild</link>
+      <guid>https://zelemeraki.design/blog/renovate-or-rebuild</guid>
+      <pubDate>Fri, 14 Aug 2026 09:00:00 +0100</pubDate>
+      <description>Structure, layout, cost, approvals and how long you can live without the space — the questions that settle it.</description>
+    </item>
+    <item>
+      <title>Building at home from abroad: how virtual design works</title>
+      <link>https://zelemeraki.design/blog/building-at-home-from-abroad</link>
+      <guid>https://zelemeraki.design/blog/building-at-home-from-abroad</guid>
+      <pubDate>Thu, 30 Jul 2026 09:00:00 +0100</pubDate>
+      <description>For clients in the diaspora: design on screen, one team on the ground, and progress you can see from anywhere.</description>
+    </item>
+  </channel>
+</rss>

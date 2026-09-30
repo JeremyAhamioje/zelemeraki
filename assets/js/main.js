@@ -3,9 +3,10 @@
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 
-  // Nav background after scrolling past the top
+  // Nav background after scrolling past the top (pages without a photo hero keep it solid)
   const nav = $('#nav');
-  const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 24);
+  const solid = nav.hasAttribute('data-solid');
+  const onScroll = () => nav.classList.toggle('is-scrolled', solid || window.scrollY > 24);
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -18,24 +19,11 @@
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.style.overflow = open ? 'hidden' : '';
+    if (window.lenis) window.lenis[open ? 'stop' : 'start']();
   };
   toggle.addEventListener('click', () => setMenu(menu.hidden));
   $$('a', menu).forEach((a) => a.addEventListener('click', () => setMenu(false)));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !menu.hidden) setMenu(false); });
-
-  // Reveal on scroll
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
-        io.unobserve(entry.target);
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    $$('.reveal').forEach((el) => io.observe(el));
-  } else {
-    $$('.reveal').forEach((el) => el.classList.add('is-in'));
-  }
 
   // Services: accordion + arch image preview
   const services = $$('.service');
@@ -46,6 +34,7 @@
       s.classList.toggle('is-active', s === item);
       $('button', s).setAttribute('aria-expanded', String(s === item));
     });
+    if (!preview) return;
     preview.classList.add('is-swapping');
     const next = new Image();
     next.src = item.dataset.img;
@@ -81,28 +70,13 @@
       p.style.gridColumn = cat === 'all' ? '' : 'auto';
       p.style.gridRow = cat === 'all' ? '' : 'auto';
     });
+    document.dispatchEvent(new CustomEvent('projects:filter'));
   }));
-
-  // Manifesto parallax (subtle)
-  const mBg = $('.manifesto-bg img');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (mBg && !reduce) {
-    const section = $('.manifesto');
-    const tick = () => {
-      const r = section.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < innerHeight) {
-        const p = (r.top + r.height) / (innerHeight + r.height);
-        mBg.style.transform = `translateY(${(p - 1) * 12}%)`;
-      }
-    };
-    tick();
-    window.addEventListener('scroll', tick, { passive: true });
-  }
 
   // Contact form → WhatsApp message
   const form = $('#contact-form');
   const note = $('#form-note');
-  form.addEventListener('submit', (e) => {
+  if (form) form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(form);
     const name = (data.get('name') || '').trim();
@@ -131,5 +105,6 @@
     window.open(url, '_blank', 'noopener');
   });
 
-  $('#year').textContent = new Date().getFullYear();
+  const year = $('#year');
+  if (year) year.textContent = new Date().getFullYear();
 })();

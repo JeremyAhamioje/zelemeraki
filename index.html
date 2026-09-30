@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zelemeraki Design — Architecture, Construction & Interiors · Lagos</title>
   <meta name="description" content="Zelemeraki Design is a full-service architecture, construction and interior design studio in Lagos, Nigeria — building calm, clutter-free spaces that celebrate Nigerian heritage.">
-  <meta property="og:title" content="Zelemeraki Design">
-  <meta property="og:description" content="Architecture, construction, renovation, landscaping and interiors — designed with stillness, built with care.">
-  <meta property="og:image" content="assets/img/hero.jpg">
+  <link rel="canonical" href="https://zelemeraki.design/">
+  <!-- OpenGraph / social cards (absolute URLs — update if the domain changes) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Zelemeraki Design">
+  <meta property="og:locale" content="en_NG">
+  <meta property="og:url" content="https://zelemeraki.design/">
+  <meta property="og:title" content="Zelemeraki Design — Architecture, Construction & Interiors in Lagos">
+  <meta property="og:description" content="A full-service design & build studio in Lagos. Architecture, construction, renovation, landscaping and interiors — spaces built for stillness.">
+  <meta property="og:image" content="https://zelemeraki.design/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Zelemeraki Design — a minimalist home framed in an arch, with the studio's ZM logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zelemeraki Design — Architecture, Construction & Interiors in Lagos">
+  <meta name="twitter:description" content="A full-service design & build studio in Lagos. Spaces built for stillness.">
+  <meta name="twitter:image" content="https://zelemeraki.design/assets/og.jpg">
   <meta name="theme-color" content="#F3EEE7">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -15,13 +28,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script>
+    // Motion is opt-in: without JS (or if scripts fail) the page renders fully visible.
+    document.documentElement.classList.add('js');
+    window.__zmPreloaderTimer = setTimeout(function () { document.documentElement.classList.add('preloader-timeout'); }, 8000);
+  </script>
 </head>
 <body>
+
+  <!-- ───────── Preloader ───────── -->
+  <!-- Ink screen → faint arches draw in → an arch doorway rises and opens onto the hero -->
+  <div class="preloader" aria-hidden="true">
+    <svg class="preloader-decor"></svg>
+    <div class="preloader-center">
+      <img class="preloader-logo" src="assets/logo-light.png" alt="" width="571" height="466">
+      <p class="preloader-count"><span>0</span>%</p>
+    </div>
+    <p class="preloader-tag">Architecture · Construction · Interiors</p>
+    <div class="preloader-window">
+      <img src="assets/img/hero.jpg" alt="">
+    </div>
+  </div>
 
   <!-- ───────── Header ───────── -->
   <header class="nav" id="nav">
     <a href="#top" class="brand" aria-label="Zelemeraki Design — home">
-      <img class="brand-mark" src="assets/logo.png" alt="" width="571" height="466">
+      <img class="brand-mark brand-mark-dark" src="assets/logo.png" alt="" width="571" height="466">
+      <img class="brand-mark brand-mark-light" src="assets/logo-light.png" alt="" width="571" height="466">
       <span class="brand-word">Zelemeraki<small>Design</small></span>
     </a>
     <nav class="nav-links" aria-label="Primary">
@@ -29,9 +62,10 @@
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
       <a href="#process">Process</a>
+      <a href="/blog/">Journal</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a href="#contact" class="btn btn-ghost nav-cta">Book a consultation</a>
+    <a href="#contact" class="btn btn-ghost nav-cta" data-magnetic>Book a consultation</a>
     <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span>
     </button>
@@ -42,6 +76,7 @@
     <a href="#services">Services</a>
     <a href="#projects">Projects</a>
     <a href="#process">Process</a>
+    <a href="/blog/">Journal</a>
     <a href="#contact">Contact</a>
     <a href="#contact" class="btn btn-solid">Book a consultation</a>
   </div>
@@ -50,30 +85,26 @@
 
     <!-- ───────── Hero ───────── -->
     <section class="hero">
+      <div class="hero-media">
+        <img src="assets/img/hero.jpg" alt="White minimalist two-storey home with a reflecting pool" fetchpriority="high">
+        <div class="hero-shade"></div>
+      </div>
       <div class="hero-copy">
-        <p class="eyebrow reveal">Architecture · Construction · Interiors — Lagos, Nigeria</p>
-        <h1 class="reveal">
-          Spaces built<br>
-          for <em>stillness.</em>
-        </h1>
-        <p class="lede reveal">
-          We design and build simple, clean and clutter-free homes and workplaces —
-          from the first sketch to the final styled shelf — so every space delivers
-          the ultimate Zen experience.
-        </p>
-        <div class="hero-actions reveal">
-          <a href="#contact" class="btn btn-solid">Start your project</a>
-          <a href="#projects" class="link-arrow">View our work <span aria-hidden="true">→</span></a>
+        <p class="eyebrow hero-eyebrow">Architecture · Construction · Interiors — Lagos, Nigeria</p>
+        <h1 class="hero-title">Spaces built<br>for <em>stillness.</em></h1>
+        <div class="hero-foot">
+          <p class="lede hero-lede">
+            We design and build simple, clean and clutter-free homes and workplaces —
+            from the first sketch to the final styled shelf — so every space delivers
+            the ultimate Zen experience.
+          </p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-light-solid" data-magnetic>Start your project</a>
+            <a href="#projects" class="link-arrow">View our work <span aria-hidden="true">→</span></a>
+          </div>
         </div>
       </div>
-      <figure class="hero-media reveal">
-        <div class="arch arch-hero">
-          <img src="assets/img/hero.jpg" alt="White minimalist two-storey home with a reflecting pool" fetchpriority="high">
-        </div>
-        <figcaption>
-          <span>01</span> Residential — design &amp; build
-        </figcaption>
-      </figure>
+      <div class="hero-scroll" aria-hidden="true"><span>Scroll</span><i></i></div>
     </section>
 
     <!-- ───────── Discipline strip ───────── -->
@@ -86,13 +117,13 @@
 
     <!-- ───────── Studio / About ───────── -->
     <section class="studio" id="studio">
-      <div class="studio-media reveal">
-        <div class="arch arch-tall"><img src="assets/img/interiors.jpg" alt="Soft neutral living room with rounded furniture and woven wall mirrors" loading="lazy"></div>
-        <div class="studio-inset"><img src="assets/img/drafting.jpg" alt="Architect drafting plans by hand" loading="lazy"></div>
+      <div class="studio-media">
+        <div class="arch arch-tall" data-clip><img src="assets/img/interiors.jpg" alt="Soft neutral living room with rounded furniture and woven wall mirrors" loading="lazy" data-parallax></div>
+        <div class="studio-inset" data-clip data-speed="-18"><img src="assets/img/drafting.jpg" alt="Architect drafting plans by hand" loading="lazy"></div>
       </div>
       <div class="studio-copy">
         <p class="eyebrow reveal">The studio</p>
-        <h2 class="reveal">A full-service design &amp; build studio celebrating Nigeria's heritage through <em>art and design.</em></h2>
+        <h2 data-split>A full-service design &amp; build studio celebrating Nigeria's heritage through <em>art and design.</em></h2>
         <p class="reveal">
           Zelemeraki Design began as a minimalist interior and art studio. Today we are a
           complete construction company — architects, builders, landscapers and stylists
@@ -115,7 +146,7 @@
     <section class="services" id="services">
       <div class="section-head">
         <p class="eyebrow reveal">What we do</p>
-        <h2 class="reveal">One studio, <em>every stage</em> of your build.</h2>
+        <h2 data-split>One studio, <em>every stage</em> of your build.</h2>
       </div>
 
       <div class="services-grid">
@@ -182,18 +213,22 @@
           </li>
         </ol>
 
-        <div class="service-preview reveal" aria-hidden="true">
-          <div class="arch arch-preview">
+        <div class="service-preview" aria-hidden="true">
+          <div class="arch arch-preview" data-clip>
             <img id="service-img" src="assets/img/architecture.jpg" alt="">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ───────── Manifesto band ───────── -->
+    <!-- ───────── Manifesto: pinned arch that opens to full-bleed ───────── -->
     <section class="manifesto">
-      <div class="manifesto-bg"><img src="assets/img/lounge.jpg" alt="" loading="lazy"></div>
-      <blockquote class="reveal">
+      <div class="manifesto-arch">
+        <img src="assets/img/lounge.jpg" alt="" loading="lazy">
+        <div class="manifesto-shade"></div>
+      </div>
+      <p class="manifesto-kicker" aria-hidden="true">Zelemeraki — Philosophy</p>
+      <blockquote class="manifesto-quote">
         “A home should not shout. It should <em>exhale</em> — and let you do the same.”
       </blockquote>
     </section>
@@ -204,7 +239,7 @@
       <div class="section-head split">
         <div>
           <p class="eyebrow reveal">Selected work</p>
-          <h2 class="reveal">Recent <em>projects</em></h2>
+          <h2 data-split>Recent <em>projects</em></h2>
         </div>
         <div class="filters reveal" role="tablist" aria-label="Filter projects">
           <button class="filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
@@ -215,27 +250,27 @@
       </div>
 
       <div class="project-grid">
-        <article class="project p-wide reveal" data-cat="residential">
+        <article class="project p-wide" data-cat="residential">
           <div class="project-img"><img src="assets/img/pool.jpg" alt="Modern white villa with pool and tropical planting" loading="lazy"></div>
           <div class="project-meta"><h3>The Lekki Residence</h3><span>Architecture · Construction · Landscaping</span></div>
         </article>
-        <article class="project p-arch reveal" data-cat="residential">
+        <article class="project p-arch" data-cat="residential">
           <div class="project-img arch"><img src="assets/img/bedroom.jpg" alt="Calm grey and white bedroom with tall windows" loading="lazy"></div>
           <div class="project-meta"><h3>Ikoyi Apartment</h3><span>Interior Design</span></div>
         </article>
-        <article class="project reveal" data-cat="renovation">
+        <article class="project" data-cat="renovation">
           <div class="project-img"><img src="assets/img/renovation.jpg" alt="Open-plan space after renovation" loading="lazy"></div>
           <div class="project-meta"><h3>Victoria Island Revamp</h3><span>Renovation</span></div>
         </article>
-        <article class="project reveal" data-cat="commercial">
+        <article class="project" data-cat="commercial">
           <div class="project-img"><img src="assets/img/lounge.jpg" alt="Warm lounge with long clerestory window" loading="lazy"></div>
           <div class="project-meta"><h3>Studio Lounge</h3><span>Commercial · Interior</span></div>
         </article>
-        <article class="project p-wide reveal" data-cat="residential">
+        <article class="project p-wide" data-cat="residential">
           <div class="project-img"><img src="assets/img/architecture.jpg" alt="Two-storey home glowing at dusk under a large tree" loading="lazy"></div>
           <div class="project-meta"><h3>Abuja Garden House</h3><span>Architecture · Exterior</span></div>
         </article>
-        <article class="project reveal" data-cat="renovation commercial">
+        <article class="project" data-cat="renovation commercial">
           <div class="project-img"><img src="assets/img/living.jpg" alt="Renovated bright living area" loading="lazy"></div>
           <div class="project-meta"><h3>Lagos Showroom</h3><span>Renovation · Retail</span></div>
         </article>
@@ -246,26 +281,26 @@
     <section class="process" id="process">
       <div class="section-head">
         <p class="eyebrow reveal">How we work</p>
-        <h2 class="reveal">From first sketch to <em>final reveal.</em></h2>
+        <h2 data-split>From first sketch to <em>final reveal.</em></h2>
       </div>
       <ol class="steps" role="list">
         <li class="step reveal">
-          <span class="step-arch" aria-hidden="true">I</span>
+          <span class="step-arch" aria-hidden="true"><svg viewBox="0 0 64 80"><path d="M.5 80V32a31.5 31.5 0 0 1 63 0v48"/></svg><i>I</i></span>
           <h3>Consult</h3>
           <p>We listen. A site visit or virtual call to understand how you live, work and what you want to feel in the space.</p>
         </li>
         <li class="step reveal">
-          <span class="step-arch" aria-hidden="true">II</span>
+          <span class="step-arch" aria-hidden="true"><svg viewBox="0 0 64 80"><path d="M.5 80V32a31.5 31.5 0 0 1 63 0v48"/></svg><i>II</i></span>
           <h3>Concept &amp; 3D</h3>
           <p>Space planning, mood boards and photoreal 3D renders, with a clear budget and timeline before anything is built.</p>
         </li>
         <li class="step reveal">
-          <span class="step-arch" aria-hidden="true">III</span>
+          <span class="step-arch" aria-hidden="true"><svg viewBox="0 0 64 80"><path d="M.5 80V32a31.5 31.5 0 0 1 63 0v48"/></svg><i>III</i></span>
           <h3>Build</h3>
           <p>Our team manages construction, trades and procurement on site, with regular progress updates you can see.</p>
         </li>
         <li class="step reveal">
-          <span class="step-arch" aria-hidden="true">IV</span>
+          <span class="step-arch" aria-hidden="true"><svg viewBox="0 0 64 80"><path d="M.5 80V32a31.5 31.5 0 0 1 63 0v48"/></svg><i>IV</i></span>
           <h3>Style &amp; Reveal</h3>
           <p>Furniture, art and the final styling touches — then we hand you the keys to a space that's ready to breathe in.</p>
         </li>
@@ -273,25 +308,41 @@
     </section>
 
     <!-- ───────── Virtual + in person ───────── -->
-    <section class="modes">
-      <div class="mode reveal">
-        <p class="eyebrow">In person</p>
-        <h3>Across Lagos &amp; Nigeria</h3>
-        <p>Full design-and-build delivery on site — new builds, renovations, landscaping and complete interiors.</p>
+    <!-- Limewash melts into a cloud bank; open sky; Lagos below. Clouds are generated,
+         tileable strips — the CSS drift moves each by exactly one tile, so it never seams. -->
+    <section class="sky" id="sky">
+      <div class="sky-bg" aria-hidden="true"></div>
+      <div class="sky-photo" aria-hidden="true">
+        <img src="assets/img/lagos.jpg" alt="" loading="lazy">
       </div>
-      <div class="mode-divider" aria-hidden="true"></div>
-      <div class="mode reveal">
-        <p class="eyebrow">Virtual</p>
-        <h3>Wherever you are</h3>
-        <p>Remote consultations, 3D design packages and custom e-styling guides for clients in Nigeria and the diaspora.</p>
+      <div class="cloud cloud-low" aria-hidden="true"><div class="cloud-track"></div></div>
+      <div class="cloud cloud-mid" aria-hidden="true"><div class="cloud-track"></div></div>
+
+      <div class="sky-copy">
+        <p class="eyebrow reveal">In person &amp; virtual</p>
+        <h2 data-split>Under one <em>sky.</em></h2>
+        <p class="sky-lede reveal">From Ikoyi to Abuja, and from Lagos to London — we build on site across Nigeria and design virtually for clients wherever home happens to be.</p>
+        <div class="sky-modes">
+          <div class="mode reveal">
+            <h3>Across Lagos &amp; Nigeria</h3>
+            <p>Full design-and-build delivery on site — new builds, renovations, landscaping and complete interiors.</p>
+          </div>
+          <div class="mode reveal">
+            <h3>Wherever you are</h3>
+            <p>Remote consultations, 3D design packages and custom e-styling guides for clients in the diaspora.</p>
+          </div>
+        </div>
       </div>
+
+      <div class="cloud cloud-front" aria-hidden="true"><div class="cloud-track"></div></div>
+      <p class="sky-caption" aria-hidden="true">Ikoyi &amp; the Lagos lagoon</p>
     </section>
 
     <!-- ───────── Contact ───────── -->
     <section class="contact" id="contact">
       <div class="contact-copy">
         <p class="eyebrow reveal">Let's talk</p>
-        <h2 class="reveal">Tell us about <em>your space.</em></h2>
+        <h2 data-split>Tell us about <em>your space.</em></h2>
         <p class="reveal">Share a few details and we'll come back to you on WhatsApp within one working day to arrange your consultation.</p>
         <dl class="contact-list reveal">
           <div><dt>Studio</dt><dd>Lekki, Lagos, Nigeria</dd></div>
@@ -375,7 +426,8 @@
       <div>
         <h4>Follow</h4>
         <p><a href="https://instagram.com/zelemeraki.design" target="_blank" rel="noopener">Instagram</a><br>
-        <a href="https://facebook.com/zelemeraki.studio" target="_blank" rel="noopener">Facebook</a></p>
+        <a href="https://facebook.com/zelemeraki.studio" target="_blank" rel="noopener">Facebook</a><br>
+        <a href="/blog/">The Journal</a></p>
       </div>
       <div>
         <h4>Art</h4>
@@ -388,6 +440,17 @@
     </div>
   </footer>
 
+  <!-- Persistent WhatsApp chat -->
+  <a class="wa-float" href="https://wa.me/2348030656011?text=Hello%20Zelemeraki%20Design%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat with Zelemeraki Design on WhatsApp">
+    <span class="wa-label">Chat with us</span>
+    <span class="wa-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.08-.12-.28-.2-.57-.34M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.29A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg></span>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.21/dist/lenis.min.js" defer></script>
   <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/motion.js" defer></script>
 </body>
 </html>
