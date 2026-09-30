@@ -10,6 +10,21 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  // Defer the cloud artwork until the sky section is within ~1.5 screens
+  const sky = $('.sky');
+  if (sky) {
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        sky.classList.add('is-near');
+        io.disconnect();
+      }, { rootMargin: '150% 0px' });
+      io.observe(sky);
+    } else {
+      sky.classList.add('is-near');
+    }
+  }
+
   // Mobile menu
   const toggle = $('.menu-toggle');
   const menu = $('#mobile-menu');

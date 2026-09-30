@@ -97,6 +97,7 @@ def head(title, description, url, image, extra=""):
   <link rel="icon" href="/assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="alternate" type="application/rss+xml" title="Zelemeraki Design — Journal" href="/blog/feed.xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -188,9 +189,17 @@ FOOT = f"""
 """
 
 
+def img_attrs(p, sizes="(max-width: 560px) 100vw, (max-width: 860px) 50vw, 33vw"):
+    """Responsive WebP for display; the .jpg stays for social previews."""
+    stem = p["image"].rsplit(".", 1)[0]
+    full = 1600 if stem == "lagos" else 1400
+    return (f'src="/assets/img/{stem}.webp" srcset="/assets/img/{stem}-900.webp 900w, '
+            f'/assets/img/{stem}.webp {full}w" sizes="{sizes}"')
+
+
 def card(p, reveal=True):
     return f"""        <a class="post-card{' reveal' if reveal else ''}" href="/blog/{p['slug']}">
-          <div class="post-card-img"><img src="/assets/img/{p['image']}" alt="{esc(p['alt'])}" loading="lazy"></div>
+          <div class="post-card-img"><img {img_attrs(p)} alt="{esc(p['alt'])}" loading="lazy"></div>
           <span class="post-meta"><b>{esc(p['category'])}</b> · {nice_date(p['date'])}</span>
           <h3>{esc(p['short'])}</h3>
           <p>{esc(p['standfirst'])}</p>
@@ -212,7 +221,7 @@ def build_index():
     </header>
 
     <a class="post-feature" href="/blog/{first['slug']}">
-      <div class="arch" data-clip><img src="/assets/img/{first['image']}" alt="{esc(first['alt'])}"></div>
+      <div class="arch" data-clip><img {img_attrs(first, "(max-width: 860px) 100vw, 40vw")} alt="{esc(first['alt'])}"></div>
       <div class="reveal">
         <span class="post-meta"><b>{esc(first['category'])}</b> · {nice_date(first['date'])} · {first['read']} min read</span>
         <h2>{esc(first['title'])}</h2>
@@ -256,7 +265,7 @@ def build_post(p):
         <p class="post-meta" data-intro style="margin-top:22px">{nice_date(p['date'])} · {p['read']} min read · Zelemeraki Design</p>
       </header>
       <figure class="article-cover" style="margin:0 auto">
-        <div class="arch" data-clip><img src="/assets/img/{p['image']}" alt="{esc(p['alt'])}"></div>
+        <div class="arch" data-clip><img {img_attrs(p, "(max-width: 760px) 100vw, 760px")} alt="{esc(p['alt'])}" fetchpriority="high"></div>
       </figure>
       <div class="prose">
 {body}

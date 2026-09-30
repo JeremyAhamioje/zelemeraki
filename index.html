@@ -24,6 +24,8 @@
   <meta name="theme-color" content="#F3EEE7">
   <link rel="icon" href="assets/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preload" as="image" href="assets/img/hero.webp" imagesrcset="assets/img/hero-900.webp 900w, assets/img/hero.webp 1400w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -46,7 +48,7 @@
     </div>
     <p class="preloader-tag">Architecture · Construction · Interiors</p>
     <div class="preloader-window">
-      <img src="assets/img/hero.jpg" alt="">
+      <img src="assets/img/hero.webp" srcset="assets/img/hero-900.webp 900w, assets/img/hero.webp 1400w" sizes="100vw" alt="">
     </div>
   </div>
 
@@ -86,7 +88,7 @@
     <!-- ───────── Hero ───────── -->
     <section class="hero">
       <div class="hero-media">
-        <img src="assets/img/hero.jpg" alt="White minimalist two-storey home with a reflecting pool" fetchpriority="high">
+        <img src="assets/img/hero.webp" srcset="assets/img/hero-900.webp 900w, assets/img/hero.webp 1400w" sizes="100vw" alt="White minimalist two-storey home with a reflecting pool" fetchpriority="high">
         <div class="hero-shade"></div>
       </div>
       <div class="hero-copy">
@@ -118,8 +120,8 @@
     <!-- ───────── Studio / About ───────── -->
     <section class="studio" id="studio">
       <div class="studio-media">
-        <div class="arch arch-tall" data-clip><img src="assets/img/interiors.jpg" alt="Soft neutral living room with rounded furniture and woven wall mirrors" loading="lazy" data-parallax></div>
-        <div class="studio-inset" data-clip data-speed="-18"><img src="assets/img/drafting.jpg" alt="Architect drafting plans by hand" loading="lazy"></div>
+        <div class="arch arch-tall" data-clip><img src="assets/img/interiors.webp" srcset="assets/img/interiors-900.webp 900w, assets/img/interiors.webp 1400w" sizes="(max-width: 860px) 100vw, 50vw" alt="Soft neutral living room with rounded furniture and woven wall mirrors" loading="lazy" data-parallax></div>
+        <div class="studio-inset" data-clip data-speed="-18"><img src="assets/img/drafting.webp" srcset="assets/img/drafting-900.webp 900w, assets/img/drafting.webp 1400w" sizes="(max-width: 860px) 100vw, 50vw" alt="Architect drafting plans by hand" loading="lazy"></div>
       </div>
       <div class="studio-copy">
         <p class="eyebrow reveal">The studio</p>
@@ -151,7 +153,7 @@
 
       <div class="services-grid">
         <ol class="service-list" role="list">
-          <li class="service is-active" data-img="assets/img/architecture.jpg" data-alt="Contemporary timber and glass home at dusk">
+          <li class="service is-active" data-img="assets/img/architecture.webp" data-alt="Contemporary timber and glass home at dusk">
             <button type="button">
               <span class="num">01</span>
               <span class="name">Architecture</span>
@@ -161,7 +163,7 @@
               <p>Concept design, space planning, planning approvals and full construction drawings for residential, commercial and retail buildings.</p>
             </div>
           </li>
-          <li class="service" data-img="assets/img/construction.jpg" data-alt="Construction crew reviewing a site foundation">
+          <li class="service" data-img="assets/img/construction.webp" data-alt="Construction crew reviewing a site foundation">
             <button type="button">
               <span class="num">02</span>
               <span class="name">Construction</span>
@@ -171,7 +173,7 @@
               <p>New builds delivered end-to-end — site management, trusted trades, procurement and quality control, with one point of contact throughout.</p>
             </div>
           </li>
-          <li class="service" data-img="assets/img/renovation.jpg" data-alt="Renovated open-plan living and dining space">
+          <li class="service" data-img="assets/img/renovation.webp" data-alt="Renovated open-plan living and dining space">
             <button type="button">
               <span class="num">03</span>
               <span class="name">Renovation &amp; Revamping</span>
@@ -181,7 +183,7 @@
               <p>We specialise in redesigning and revamping tired, old spaces, giving them a fresh new look — whether it's one living room or a whole building.</p>
             </div>
           </li>
-          <li class="service" data-img="assets/img/living.jpg" data-alt="Bright minimalist living room with soft grey sofa">
+          <li class="service" data-img="assets/img/living.webp" data-alt="Bright minimalist living room with soft grey sofa">
             <button type="button">
               <span class="num">04</span>
               <span class="name">Interior Design &amp; Styling</span>
@@ -191,7 +193,7 @@
               <p>Full project consultation, 3D rendering, material selection and furniture sourcing — plus décor and e-styling guidance for clients who'd like to redecorate themselves.</p>
             </div>
           </li>
-          <li class="service" data-img="assets/img/exterior.jpg" data-alt="Modern home facade with timber cladding and lawn">
+          <li class="service" data-img="assets/img/exterior.webp" data-alt="Modern home facade with timber cladding and lawn">
             <button type="button">
               <span class="num">05</span>
               <span class="name">Exterior Design</span>
@@ -201,7 +203,7 @@
               <p>Facades, cladding, lighting and outdoor living — so the outside of your home is as considered as the inside.</p>
             </div>
           </li>
-          <li class="service" data-img="assets/img/landscape.jpg" data-alt="Planted courtyard in front of a modern house">
+          <li class="service" data-img="assets/img/landscape.webp" data-alt="Planted courtyard in front of a modern house">
             <button type="button">
               <span class="num">06</span>
               <span class="name">Landscaping</span>
@@ -215,7 +217,7 @@
 
         <div class="service-preview" aria-hidden="true">
           <div class="arch arch-preview" data-clip>
-            <img id="service-img" src="assets/img/architecture.jpg" alt="">
+            <img loading="lazy" id="service-img" src="assets/img/architecture.webp" alt="">
           </div>
         </div>
       </div>
@@ -224,7 +226,7 @@
     <!-- ───────── Manifesto: pinned arch that opens to full-bleed ───────── -->
     <section class="manifesto">
       <div class="manifesto-arch">
-        <img src="assets/img/lounge.jpg" alt="" loading="lazy">
+        <img src="assets/img/lounge.webp" srcset="assets/img/lounge-900.webp 900w, assets/img/lounge.webp 1400w" sizes="100vw" alt="" loading="lazy">
         <div class="manifesto-shade"></div>
       </div>
       <p class="manifesto-kicker" aria-hidden="true">Zelemeraki — Philosophy</p>
@@ -251,27 +253,27 @@
 
       <div class="project-grid">
         <article class="project p-wide" data-cat="residential">
-          <div class="project-img"><img src="assets/img/pool.jpg" alt="Modern white villa with pool and tropical planting" loading="lazy"></div>
+          <div class="project-img"><img src="assets/img/pool.webp" srcset="assets/img/pool-900.webp 900w, assets/img/pool.webp 1400w" sizes="(max-width: 860px) 100vw, 50vw" alt="Modern white villa with pool and tropical planting" loading="lazy"></div>
           <div class="project-meta"><h3>The Lekki Residence</h3><span>Architecture · Construction · Landscaping</span></div>
         </article>
         <article class="project p-arch" data-cat="residential">
-          <div class="project-img arch"><img src="assets/img/bedroom.jpg" alt="Calm grey and white bedroom with tall windows" loading="lazy"></div>
+          <div class="project-img arch"><img src="assets/img/bedroom.webp" srcset="assets/img/bedroom-900.webp 900w, assets/img/bedroom.webp 1400w" sizes="(max-width: 860px) 100vw, 50vw" alt="Calm grey and white bedroom with tall windows" loading="lazy"></div>
           <div class="project-meta"><h3>Ikoyi Apartment</h3><span>Interior Design</span></div>
         </article>
         <article class="project" data-cat="renovation">
-          <div class="project-img"><img src="assets/img/renovation.jpg" alt="Open-plan space after renovation" loading="lazy"></div>
+          <div class="project-img"><img src="assets/img/renovation.webp" srcset="assets/img/renovation-900.webp 900w, assets/img/renovation.webp 1400w" sizes="(max-width: 860px) 100vw, 50vw" alt="Open-plan space after renovation" loading="lazy"></div>
           <div class="project-meta"><h3>Victoria Island Revamp</h3><span>Renovation</span></div>
         </article>
         <article class="project" data-cat="commercial">
-          <div class="project-img"><img src="assets/img/lounge.jpg" alt="Warm lounge with long clerestory window" loading="lazy"></div>
+          <div class="project-img"><img src="assets/img/lounge.webp" srcset="assets/img/lounge-900.webp 900w, assets/img/lounge.webp 1400w" sizes="100vw" alt="Warm lounge with long clerestory window" loading="lazy"></div>
           <div class="project-meta"><h3>Studio Lounge</h3><span>Commercial · Interior</span></div>
         </article>
         <article class="project p-wide" data-cat="residential">
-          <div class="project-img"><img src="assets/img/architecture.jpg" alt="Two-storey home glowing at dusk under a large tree" loading="lazy"></div>
+          <div class="project-img"><img src="assets/img/architecture.webp" srcset="assets/img/architecture-900.webp 900w, assets/img/architecture.webp 1400w" sizes="(max-width: 860px) 100vw, 50vw" alt="Two-storey home glowing at dusk under a large tree" loading="lazy"></div>
           <div class="project-meta"><h3>Abuja Garden House</h3><span>Architecture · Exterior</span></div>
         </article>
         <article class="project" data-cat="renovation commercial">
-          <div class="project-img"><img src="assets/img/living.jpg" alt="Renovated bright living area" loading="lazy"></div>
+          <div class="project-img"><img src="assets/img/living.webp" srcset="assets/img/living-900.webp 900w, assets/img/living.webp 1400w" sizes="(max-width: 860px) 100vw, 50vw" alt="Renovated bright living area" loading="lazy"></div>
           <div class="project-meta"><h3>Lagos Showroom</h3><span>Renovation · Retail</span></div>
         </article>
       </div>
@@ -313,7 +315,7 @@
     <section class="sky" id="sky">
       <div class="sky-bg" aria-hidden="true"></div>
       <div class="sky-photo" aria-hidden="true">
-        <img src="assets/img/lagos.jpg" alt="" loading="lazy">
+        <img src="assets/img/lagos.webp" srcset="assets/img/lagos-900.webp 900w, assets/img/lagos.webp 1600w" sizes="100vw" alt="" loading="lazy">
       </div>
       <div class="cloud cloud-low" aria-hidden="true"><div class="cloud-track"></div></div>
       <div class="cloud cloud-mid" aria-hidden="true"><div class="cloud-track"></div></div>
