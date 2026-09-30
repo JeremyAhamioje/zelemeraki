@@ -406,11 +406,11 @@ h3 { font-size: clamp(24px, 2.2vw, 30px); font-weight: 400; }
   animation: drift linear infinite;
 }
 .cloud-front { top: 0; height: var(--front-h); z-index: 3; }
-.cloud-front .cloud-track { width: calc(100% + var(--front-tile)); background-image: url(../img/clouds-front.webp); --tile: var(--front-tile); animation-duration: 41s; }
+.cloud-front .cloud-track { width: calc(100% + var(--front-tile)); background-image: url(../img/clouds-front.webp); --tile: var(--front-tile); animation-duration: 38s; }
 .cloud-mid { top: 58vh; height: var(--mid-h); z-index: 1; }
-.cloud-mid .cloud-track { width: calc(100% + var(--mid-tile)); background-image: url(../img/clouds-mid.webp); --tile: var(--mid-tile); animation-duration: 60s; }
+.cloud-mid .cloud-track { width: calc(100% + var(--mid-tile)); background-image: url(../img/clouds-mid.webp); --tile: var(--mid-tile); animation-duration: 55s; }
 .cloud-low { bottom: calc(88vh - var(--low-h) * .72); height: var(--low-h); z-index: 1; opacity: .92; }
-.cloud-low .cloud-track { width: calc(100% + var(--low-tile)); background-image: url(../img/clouds-low.webp); --tile: var(--low-tile); animation-duration: 97s; }
+.cloud-low .cloud-track { width: calc(100% + var(--low-tile)); background-image: url(../img/clouds-low.webp); --tile: var(--low-tile); animation-duration: 89s; }
 @keyframes drift { to { transform: translateX(calc(-1 * var(--tile))); } }
 .sky.is-idle .cloud-track { animation-play-state: paused; }
 /* Clouds download only when the section approaches (main.js adds .is-near). */
