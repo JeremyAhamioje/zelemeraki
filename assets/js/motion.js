@@ -278,41 +278,42 @@
       ScrollTrigger.refresh();
     });
 
-    // Manifesto: a small arch on limewash opens to a full-bleed room, then the words light up
+    // Manifesto: full-bleed from the first frame (no limewash margins). The room settles,
+    // two arch outlines draw up from the floor around the quote, then the words light up.
     const man = $('.manifesto');
     if (man) {
-      const arch = $('.manifesto-arch', man);
-      const img = $('img', arch);
+      const img = $('.manifesto-arch img', man);
       const shade = $('.manifesto-shade', man);
+      const frame = $('.manifesto-frame', man);
       const kicker = $('.manifesto-kicker', man);
       const quote = $('.manifesto-quote', man);
-      arch.style.transform = 'none';
-      arch.style.left = '50%';
-      arch.style.marginLeft = '0';
-      img.style.inset = 'auto';
 
-      const geo = { w: 0, h: 0 };
-      const drawMan = () => {
+      frame.innerHTML = '<path/><path/>';
+      const paths = $$('path', frame);
+      const drawFrame = () => {
         const W = man.clientWidth, H = man.clientHeight;
-        setArch(arch, img, geo.w, geo.h, W, H);
-        arch.style.left = `${(W - geo.w) / 2}px`;
+        const w = W < 700 ? W * 0.86 : Math.min(W * 0.44, 640);
+        const h = H * 0.74; // crown sits below the kicker
+        frame.setAttribute('viewBox', `0 0 ${W} ${H}`);
+        paths[0].setAttribute('d', archPath(W, H, w, h));
+        paths[1].setAttribute('d', archPath(W, H, w + 36, h + 18));
       };
-      const start = () => { const W = man.clientWidth, H = man.clientHeight; return { w: W < 700 ? W * 0.62 : W * 0.3, h: H * 0.62 }; };
-      const end = () => fullArch(man.clientWidth, man.clientHeight);
+      drawFrame();
+      ScrollTrigger.addEventListener('refreshInit', drawFrame);
+      const len = (i, el) => el.getTotalLength();
 
       let words = [quote];
       if (hasSplit) words = SplitText.create(quote, { type: 'words' }).words;
 
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: man, start: 'top top', end: '+=200%', pin: true, scrub: 0.8, invalidateOnRefresh: true },
+        scrollTrigger: { trigger: man, start: 'top top', end: '+=160%', pin: true, scrub: 0.8, invalidateOnRefresh: true },
       });
-      tl.fromTo(geo, { w: () => start().w, h: () => start().h }, { w: () => end().w, h: () => end().h, ease: 'power2.inOut', duration: 1, onUpdate: drawMan })
-        .fromTo(img, { scale: 1.3 }, { scale: 1, ease: 'power2.inOut', duration: 1 }, 0)
-        .fromTo(shade, { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0.5)
-        .fromTo(kicker, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.3 }, 0.8)
-        .fromTo(words, { opacity: 0 }, { opacity: 1, stagger: 0.06, duration: 0.3, ease: 'none' }, 0.75);
-      // seed first frame so it looks right before the first scroll update
-      Object.assign(geo, start()); drawMan();
+      tl.fromTo(img, { scale: 1.28, yPercent: -4 }, { scale: 1, yPercent: 0, ease: 'power2.out', duration: 1 }, 0)
+        .fromTo(shade, { opacity: 0.35 }, { opacity: 1, ease: 'none', duration: 0.6 }, 0)
+        .fromTo(paths, { strokeDasharray: len, strokeDashoffset: len },
+          { strokeDasharray: len, strokeDashoffset: 0, ease: 'power1.inOut', duration: 0.7, stagger: 0.08 }, 0.1)
+        .fromTo(kicker, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.25 }, 0.35)
+        .fromTo(words, { opacity: 0.14 }, { opacity: 1, stagger: 0.05, duration: 0.25, ease: 'none' }, 0.4);
     }
 
     // Process arches draw themselves
