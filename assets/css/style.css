@@ -179,7 +179,10 @@ h3 { font-size: clamp(24px, 2.2vw, 30px); font-weight: 400; }
 
 /* ───────── Hero ───────── */
 .hero {
-  position: relative; height: 100vh; height: 100svh; min-height: 560px;
+  /* Fills the screen, but never lets the copy slide under the fixed white nav:
+     it clears the nav and grows if the text needs more room (small phones). */
+  position: relative; min-height: 100vh; min-height: 100svh;
+  padding-top: 104px;
   display: flex; align-items: flex-end; overflow: hidden;
   color: var(--paper); background: var(--ink);
 }
