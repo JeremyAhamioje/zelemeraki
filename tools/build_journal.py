@@ -138,41 +138,45 @@ NAV = """  <header class="nav is-scrolled" id="nav" data-solid>
   </div>
 """
 
-FOOT = f"""
-  <footer class="footer">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="/assets/logo-light.png" alt="" width="571" height="466" loading="lazy">
-        <p class="footer-big">Zelemeraki<em> Design</em></p>
+def footer_html(prefix=""):
+    """Footer laid out like zelemeraki.studio: links · Our Studio · mailing list, then a
+    full-width rule and a centred copyright line. `prefix` is "/" on pages other than home."""
+    return f"""  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-cols">
+        <nav class="footer-links" aria-label="Footer">
+          <a href="{prefix}#projects">Our Projects</a>
+          <a href="{prefix}#services">Services</a>
+          <a href="/blog/">The Journal</a>
+          <a href="{prefix}#contact">Book a Consultation</a>
+          <a href="https://instagram.com/zelemeraki.design" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://zelemeraki.studio" target="_blank" rel="noopener">Zelemeraki Studio — Art</a>
+        </nav>
+        <div class="footer-studio">
+          <h4>Our Studio</h4>
+          <p>Lekki, Lagos, Nigeria</p>
+          <p>Monday–Saturday : 9am–6pm</p>
+          <p>Tel: <a href="tel:+{WHATSAPP}">+234 8030656011</a></p>
+          <p>Email: <a href="mailto:hello@zelemeraki.design">hello@zelemeraki.design</a></p>
+        </div>
+        <!-- Mailing list: set data-endpoint to the Mailchimp embed form action URL to go live. -->
+        <form class="footer-signup" id="signup-form" data-endpoint="" novalidate>
+          <h4>Subscribe to our mailing list to hear about new projects, design notes and studio news.</h4>
+          <label class="sr-only" for="s-name">Your name</label>
+          <input id="s-name" name="name" type="text" autocomplete="name" placeholder="Your Name *" required>
+          <label class="sr-only" for="s-email">Your email address</label>
+          <input id="s-email" name="email" type="email" autocomplete="email" placeholder="Your Email Address *" required>
+          <button type="submit">Sign up!</button>
+          <p class="signup-note" role="status"></p>
+        </form>
       </div>
-      <a href="/#contact" class="btn btn-light">Book a consultation</a>
-    </div>
-    <div class="footer-cols">
-      <div>
-        <h4>Studio</h4>
-        <p>Lekki, Lagos, Nigeria<br>Mon – Sat · 9am – 6pm</p>
-      </div>
-      <div>
-        <h4>Services</h4>
-        <p>Architecture<br>Construction<br>Renovation<br>Interiors<br>Exterior &amp; Landscaping</p>
-      </div>
-      <div>
-        <h4>Follow</h4>
-        <p><a href="https://instagram.com/zelemeraki.design" target="_blank" rel="noopener">Instagram</a><br>
-        <a href="https://facebook.com/zelemeraki.studio" target="_blank" rel="noopener">Facebook</a><br>
-        <a href="/blog/">The Journal</a></p>
-      </div>
-      <div>
-        <h4>Art</h4>
-        <p>Looking for original artwork?<br><a href="https://zelemeraki.studio" target="_blank" rel="noopener">Visit Zelemeraki Studio →</a></p>
-      </div>
-    </div>
-    <div class="footer-base">
-      <span>© <span id="year">2026</span> Zelemeraki Design. All rights reserved.</span>
-      <a href="#top">Back to top ↑</a>
+      <p class="footer-copy">Copyright © <span id="year">2026</span> - Zelemeraki Design. All Rights Reserved</p>
     </div>
   </footer>
+"""
 
+
+FOOT = footer_html("/") + f"""
   <a class="wa-float" href="https://wa.me/{WHATSAPP}?text=Hello%20Zelemeraki%20Design%2C%20I%27d%20like%20to%20talk%20about%20a%20project." target="_blank" rel="noopener" aria-label="Chat with Zelemeraki Design on WhatsApp">
     <span class="wa-label">Chat with us</span>
     <span class="wa-icon">{WA_SVG}</span>
@@ -312,6 +316,15 @@ def build_home_teaser():
     index.write_text(s[:a] + block + s[b:], encoding="utf-8")
 
 
+def build_home_footer():
+    index = ROOT / "index.html"
+    s = index.read_text(encoding="utf-8")
+    a = s.index('  <footer class="footer">')
+    end = "  </footer>\n"
+    b = s.index(end) + len(end)
+    index.write_text(s[:a] + footer_html("") + s[b:], encoding="utf-8")
+
+
 def build_feeds():
     urls = [(f"{SITE}/", POSTS[0]["date"]), (f"{SITE}/blog/", POSTS[0]["date"])]
     urls += [(f"{SITE}/blog/{p['slug']}", p["date"]) for p in POSTS]
@@ -350,4 +363,5 @@ if __name__ == "__main__":
         build_post(post)
     build_feeds()
     build_home_teaser()
+    build_home_footer()
     print(f"Built journal: {len(POSTS)} posts")

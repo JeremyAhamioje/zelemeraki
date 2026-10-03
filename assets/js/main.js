@@ -120,6 +120,41 @@
     window.open(url, '_blank', 'noopener');
   });
 
+  // Footer mailing list. With data-endpoint set to a Mailchimp embed action URL it
+  // subscribes via Mailchimp's JSONP endpoint; until then it falls back to an email.
+  const signup = $('#signup-form');
+  if (signup) signup.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nameEl = $('[name="name"]', signup);
+    const emailEl = $('[name="email"]', signup);
+    const msg = $('.signup-note', signup);
+    const name = nameEl.value.trim();
+    const email = emailEl.value.trim();
+    nameEl.classList.toggle('has-error', !name);
+    emailEl.classList.toggle('has-error', !/^\S+@\S+\.\S+$/.test(email));
+    if (!name || !/^\S+@\S+\.\S+$/.test(email)) { msg.textContent = 'Please add your name and a valid email address.'; return; }
+
+    const endpoint = signup.dataset.endpoint;
+    if (!endpoint) {
+      const body = encodeURIComponent(`Please add me to the Zelemeraki Design mailing list.\n\nName: ${name}\nEmail: ${email}`);
+      window.location.href = `mailto:hello@zelemeraki.design?subject=${encodeURIComponent('Mailing list sign-up')}&body=${body}`;
+      msg.textContent = 'Opening your email app to confirm…';
+      return;
+    }
+    const cb = `zmSignup${Date.now()}`;
+    const [first, ...rest] = name.split(/\s+/);
+    const url = `${endpoint.replace('/post?', '/post-json?')}&EMAIL=${encodeURIComponent(email)}&FNAME=${encodeURIComponent(first)}&LNAME=${encodeURIComponent(rest.join(' '))}&c=${cb}`;
+    const tag = document.createElement('script');
+    window[cb] = (res) => {
+      msg.textContent = res && res.result === 'success' ? 'Thank you — you’re on the list.' : 'Something went wrong. Please try again.';
+      if (res && res.result === 'success') signup.reset();
+      delete window[cb]; tag.remove();
+    };
+    tag.src = url;
+    document.body.appendChild(tag);
+    msg.textContent = 'Signing you up…';
+  });
+
   const year = $('#year');
   if (year) year.textContent = new Date().getFullYear();
 })();
